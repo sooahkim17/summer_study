@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<h4><a href="{% url 'post' %}"><글 작성하러 가기></a></h4>
+{% for board in boards.all %}
+     <div class="jumbotron">
+         <a  class="btn btn-primary btn-lg"  href="{% url 'detail' board.id %}">
+             <h4 class="display-6">제목:{{board.title}}</h1>
+         </a>
+        <p class="lead">내용:{{board.body}}</p>
+        <small class="text-muted">{{board.pub_date}}</small>
+     </div>
+{%endfor%}
