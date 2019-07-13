@@ -9,3 +9,82 @@
         <small class="text-muted">{{board.pub_date}}</small>
      </div>
 {%endfor%}
+<meta http-equiv="Content-Type" Content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<style type="text/css">
+
+	body {font-size:11pt; padding:0; margin:0; text-align: center;}
+	h3 {color: #85144b; font-size: 14pt; margin:10 auto; padding: 10px;}
+	.contents {width: 800px; height: 400px; background-color: #d6d6d6; margin: 0 auto;}
+	
+	/* banner */
+	.banner {position: relative; width: 340px; height: 210px; top: 50px;  margin:0 auto; padding:0; overflow: hidden;}
+	.banner ul {position: absolute; margin: 0px; padding:0; list-style: none; }
+	.banner ul li {float: left; width: 340px; height: 210px; margin:0; padding:0;}
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script language="JavaScript">
+
+	$(document).ready(function() {
+		
+		var $banner = $(".banner").find("ul");
+
+		var $bannerWidth = $banner.children().outerWidth();
+		var $bannerHeight = $banner.children().outerHeight(); 
+        var $bannerLength = $banner.children().length;
+		var rollingId;
+
+		
+		rollingId = setInterval(function() { rollingStart(); }, 3000);
+		
+		banner.mouseover(function(){
+			
+			clearInterval(rollingId);
+			$(this).css("cursor", "pointer");
+		});
+		
+		banner.mouseout(function(){
+			rollingId = setInterval(function() { rollingStart(); }, 3000);
+			$(this).css("cursor", "default");
+		});
+		
+		function rollingStart() {
+			$banner.css("width", $bannerWidth * $bannerLength + "px");
+			$banner.css("height", $bannerHeight + "px");
+			
+			$banner.animate({left: - $bannerWidth + "px"}, 1500, function() { 
+				
+				$(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+				
+				$(this).find("li:first").remove();
+				
+				$(this).css("left", 0);
+				
+			});
+		}
+	}); 
+  
+</script>
+
+</head>
+<body>
+	<div class="contents">
+
+	
+
+		<div class="banner">
+			<ul>
+				<li><img src="https://cdn.pixabay.com/photo/2016/02/01/16/10/eye-1173863__340.jpg" width="340" height="210px"></li>
+				<li><img src="https://cdn.pixabay.com/photo/2017/12/30/13/25/portrait-3050076__340.jpg" width="340" height="210px"></li>
+				<li><img src="https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667__340.jpg" width="340" height="210px"></li>
+				<li><img src="https://cdn.pixabay.com/photo/2016/03/05/20/01/art-1238602__340.jpg" width="340" height="210px"></li>
+				<li><img src="https://cdn.pixabay.com/photo/2015/07/31/15/01/guitar-869217__340.jpg" width="340" height="210px"></li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+</html>
