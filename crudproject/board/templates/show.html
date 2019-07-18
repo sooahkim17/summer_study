@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-//로그인을 하지 않으면 보이지 
+//로그인을 하지 않으면 보이지 않아요.
 {% if user.is_authenticated %}
 {{user.last_name}} {{user.first_name}}님 환영합니다. 
 <a class="btn btn-primary btn-lg"  href="{% url 'signout' %}">
