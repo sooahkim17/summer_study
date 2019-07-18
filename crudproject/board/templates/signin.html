@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<body>
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
+<div class="form-group">
+<form  class="form-control" action="" method="POST">
+{% csrf_token %}
+<table>
+{{ form.as_table }}
+</table>
+<input class="btn btn-primary" type="submit" value="로그인">
+<a class="btn btn-primary"  href="{% url 'signup' %}">회원가입</a>
+</form>
+</div>
+</body>
+</html>

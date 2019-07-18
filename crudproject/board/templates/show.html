@@ -1,14 +1,32 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+{% if user.is_authenticated %}
+{{user.last_name}} {{user.first_name}}님 환영합니다. 
+<a class="btn btn-primary btn-lg"  href="{% url 'signout' %}">
+	<h6 class="display-6">로그아웃</h6>
+</a>
+{% else %} 
+<a class="btn btn-primary btn-lg"  href="{% url 'signup' %}">
+	<h6 class="display-6">회원가입</h6>
+</a>
+<a class="btn btn-primary btn-lg"  href="{% url 'signin' %}">
+	<h6 class="display-6">로그인</h6>
+</a>
+{%endif%}
+{% if user.is_authenticated %}
 <h4><a href="{% url 'post' %}"><글 작성하러 가기></a></h4>
 {% for board in boards.all %}
      <div class="jumbotron">
          <a  class="btn btn-primary btn-lg"  href="{% url 'detail' board.id %}">
-             <h4 class="display-6">제목:{{board.title}}</h1>
+             <h4 class="display-6">제목:{{board.title}}</h4>
          </a>
         <p class="lead">내용:{{board.body}}</p>
         <small class="text-muted">{{board.pub_date}}</small>
      </div>
 {%endfor%}
+{% else %} 
+<p>로그인을 하셔야 글작성이 가능한 게시판 입니다.</p>
+{%endif%}
 <meta http-equiv="Content-Type" Content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <style type="text/css">
@@ -68,7 +86,7 @@
 	}); 
   
 </script>
-<script type="text/JavaScript">
+  <script type="text/JavaScript">
 	var jbBtn = document.createElement( 'h3' );
 	var jbBtnText = document.createTextNode( '이미지 자동 슬라이드' );
 	jbBtn.appendChild( jbBtnText );
@@ -81,7 +99,6 @@
 	}
 
   </script>
-
 
 </head>
 <body>

@@ -8,3 +8,20 @@
     <p class="lead">등록일:{{board.update_date}}</p>
     <a class="btn btn-primary btn-lg" href="{% url 'delete' pk=board.id %}">삭제</a>
 </div>
+<hr>
+<form action="{% url 'detail' board.id %}" method="POST">
+    {% csrf_token %}
+    <p>
+   {{comment_form.as_p}}
+   <input type="submit" value="Comment" class="btn btn-primary btn-lg">
+   </p>
+
+</form>
+{% for comment in comments %}
+    <div class="commnet">
+        <div class="date">{{comment.created}}</div>
+        <p>{{comment.text}}</p>
+    </div>
+{%empty%}
+    <p>No comments here yet</p>
+{%endfor%}
