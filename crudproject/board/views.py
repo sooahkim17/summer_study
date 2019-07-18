@@ -28,6 +28,7 @@ def show(request):
     boards=Board.objects.order_by('-id')
     return render(request,'show.html',{'boards':boards})
 
+#디테일 페이지에 댓글 
 def detail(request,board_id):
     board_detail=get_object_or_404(Board,pk=board_id)
     if request.method=="POST":
@@ -60,6 +61,7 @@ def delete(request,pk):
     board.delete()
     return redirect('show')
 
+#회원가입
 def signup(request):
     if request.method == "GET":
         return render(request, 'signup.html', {'form':SignupForm()} )
@@ -83,7 +85,8 @@ def signup(request):
 
         else: 
             return render(request, 'signup.html',{'form':form})
-
+        
+#로그인
 def signin(request):
     if request.method == "GET":
         return render(request, 'signin.html', {'form':SigninForm()} )
@@ -101,7 +104,7 @@ def signin(request):
             return render(request, 'signin.html',{'form':form, 'error':'아이디나 비밀번호가 일치하지 않습니다.'})
     
 
-
+#로그아웃
 def signout(request): 
     logout(request) 
     return redirect('show')
